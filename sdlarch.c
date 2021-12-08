@@ -2,6 +2,8 @@
 #include <SDL.h>
 #include "libretro.h"
 #include "glad.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 static SDL_Window *g_win = NULL;
 static SDL_GLContext *g_ctx = NULL;
@@ -607,10 +609,10 @@ static bool core_environment(unsigned cmd, void *data) {
                 memcpy((char*)outvar->value, semicolon, first_pipe - semicolon);
                 ((char*)outvar->value)[first_pipe - semicolon] = '\0';
             } else {
-                outvar->value = strdup(semicolon);
+                outvar->value = _strdup(semicolon);
             }
 
-            outvar->key = strdup(invar->key);
+            outvar->key = _strdup(invar->key);
             SDL_assert(outvar->key && outvar->value);
         }
 
@@ -783,13 +785,17 @@ static void core_load(const char *sofile) {
 	load_sym(set_audio_sample_batch, retro_set_audio_sample_batch);
 
 	set_environment(core_environment);
+
+    // I had to move this to BEFORE set_video_refresh, as the mesen
+    // core depends on init being called first.
+	g_retro.retro_init();
+
 	set_video_refresh(core_video_refresh);
 	set_input_poll(core_input_poll);
 	set_input_state(core_input_state);
 	set_audio_sample(core_audio_sample);
 	set_audio_sample_batch(core_audio_sample_batch);
 
-	g_retro.retro_init();
 	g_retro.initialized = true;
 
 	puts("Core loaded");

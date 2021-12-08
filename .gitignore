@@ -1,3 +1,5 @@
 *.o
 build/
 /sdlarch
+/x64/Debug
+/.vs/sdlarch/v16
