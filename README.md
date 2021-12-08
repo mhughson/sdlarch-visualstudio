@@ -2,6 +2,10 @@
 
 This repo is simply putting sdlarch into a Visual Studio Solution. It also includes a pre-compiled Mesen Core, and ROM of From Below.
 
+My hope is that one day this can be a "drag and drop" solution to porting NES games (and possibly other ROMs) to platforms like Steam, XBOX, Playstation and Switch.
+
+Currently it is in a pretty rough state, but should run any NES game with keyboard input.
+
 # sdlarch
 
 sdlarch is a small libretro frontend (sdlarch.c has less than 1000 lines of
