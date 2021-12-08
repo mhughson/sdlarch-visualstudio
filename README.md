@@ -1,3 +1,7 @@
+# sdlarch-visualstudio
+
+This repo is simply putting sdlarch into a Visual Studio Solution. It also includes a pre-compiled Mesen Core, and ROM of From Below.
+
 # sdlarch
 
 sdlarch is a small libretro frontend (sdlarch.c has less than 1000 lines of
@@ -7,8 +11,9 @@ or configuration support.
 
 ## Building
 
-Other than `make`, `pkg-config` and a working C99 or C++ compiler, you'll need
-`sdl2` development files installed.
+Open sdlarch.sln in Visual Studio 2019. Select Debug | x64 config (I haven't setup up the others yet). Select Build -> Build Solution.
+
+When running, you must pass 2 arguments to the command line (the project should already be setup to do this): the core to load, and the ROM to run.
 
 ## Running
 
